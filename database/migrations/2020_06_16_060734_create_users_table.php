@@ -30,9 +30,9 @@ class CreateUsersTable extends Migration
         });
         DB::table('users')->insert(
             array(
-                'firstname'=>'admin',
+                'firstname'=>'Admin',
                 'lastname'=>'user',
-                'role'=> 0,
+                'role'=> 1,
                 'email'=>'admin@example.com',
                 'position_id'=>1,
                 'password'=>bcrypt('password'),
@@ -41,9 +41,9 @@ class CreateUsersTable extends Migration
     );
         DB::table('users')->insert(
             array(
-                'firstname'=>'normal',
+                'firstname'=>'Normal',
                 'lastname'=>'user',
-                'role'=> 1,
+                'role'=> 0,
                 'email'=>'normal@example.com',
                 'position_id'=> 4,
                 'password'=>bcrypt('password'),

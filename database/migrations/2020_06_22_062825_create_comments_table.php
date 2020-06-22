@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentUserTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateStudentUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_user', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('comment');
             $table->unsignedBigInteger('user_id');
@@ -21,7 +21,6 @@ class CreateStudentUserTable extends Migration
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +31,6 @@ class CreateStudentUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_user');
+        Schema::dropIfExists('comments');
     }
 }
