@@ -11,9 +11,12 @@ class Student extends Model
       return $this->belongsTo(User::class);
    }
 
-   public function users() {
-      return $this->belongsToMany(Student::class)->withPivot('comment');
+   public function comments(){
+      return $this->hasMany(Comment::class);
    }
+   // public function users() {
+   //    return $this->belongsToMany(Student::class)->withPivot('comment');
+   // }
 
    protected $fillable = ['firstname','lastname','class','description','piture','activeFollowup','user_id'];
       
