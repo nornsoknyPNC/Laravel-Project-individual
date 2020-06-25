@@ -20,8 +20,28 @@ class CommentController extends Controller
         return back();
     }
 
-    // public function getComment() {
-    //     $comments = Comment::all();
-    //     return view('student.detail',compact('comments'));
-    // }
+    public function getComment() {
+        $comments = Comment::all();
+        return view('student.detail',compact('comments'));
+    }
+
+    public function showEdit($id) {
+        $comments = Comment::find($id);
+        return view('comment.edit',compact('comments'));
+    }
+
+    public function edit(Request $request,$id) {
+        $user = User::find(Auth::id());
+        $comments = Comment::find($id);
+        $comments->comment = $request->get('comment');
+        $comments->user_id = $user->id;
+        $comments->save();
+        return redirect('home') ;
+    }
+
+    public function delete($id) {
+            $comments = Comment::find($id);
+            $comments->delete();
+            return back();
+    }
 }

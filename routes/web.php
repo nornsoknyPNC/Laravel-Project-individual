@@ -26,4 +26,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('students', 'StudentController');
 Route::post('/comments/{id}', 'CommentController@addComment')->name('addComment');
-// Route::post('/comments', 'CommentController@getComment')->name('getComment');
+Route::get('/comments/{id}', 'CommentController@getComment')->name('getComment');
+Route::get('/editForm/{id}', 'CommentController@showEdit')->name('editForm');
+Route::patch('/edit/{id}', 'CommentController@edit')->name('edit');
+Route::get('/delete/{id}', 'CommentController@delete')->name('delete');

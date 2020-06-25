@@ -55,7 +55,6 @@ class StudentController extends Controller
             return $request;
             $students->image='';
         }
-        // $students->activeFollowup = $request->get('activeFollowup');
         $students->user_id = $user->id;
 
         $students->save();
@@ -112,7 +111,6 @@ class StudentController extends Controller
             return $request;
             $students->image='';
         }
-        // $students->activeFollowup = $request->get('activeFollowup');
         $students->user_id = $user->id;
 
         $students->save();
@@ -127,8 +125,6 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        // $students = Student::find($id);
-        // $students->delete();
-        // return redirect('home'); 
+        //
     }
 }

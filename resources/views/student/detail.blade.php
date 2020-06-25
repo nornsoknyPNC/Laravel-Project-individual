@@ -10,7 +10,6 @@
 
                 <div class="card-body">
                         @csrf
-                        {{-- @method('patch') --}}
                         <h3><b>{{$students->firstname}} {{$students->lastname}}</b> - {{$students->class}}</h3>
                         <br>
                         <h5>Description</h5>
@@ -24,11 +23,20 @@
                         <br>
                         <button type="submit" class="btn btn-primary">Post</button>
                     </form>
-                    {{-- <form action="{{route('getComment')}}" method="POST">
-                        @foreach ($students as $comment)
-                        <textarea class="form-control" name="comment" id="comment" cols="150" rows="3" ></textarea>
+                    <br>
+                    
+                    <form action="{{route('getComment',$students->id)}}" method="POST">
+                        @csrf
+                        @foreach ($students->comments as $item)
+                            <strong>{{$students->user->firstname}}</strong>
+                            <textarea class="form-control" name="comment" id="comment" cols="150" rows="3" disabled selected >{{$item->comment}}</textarea>
+                            @if (Auth::user() && (Auth::user()->id == $item->user_id)) 
+                            <a href="{{route('editForm',$item->id)}}">Edit</a> |
+                            <a href="{{route('delete',$item->id)}}">Delete</a><hr>
+                            @endif
                         @endforeach
-                    </form> --}}
+                    </form>
+
                 </div>
             </div>
         </div>

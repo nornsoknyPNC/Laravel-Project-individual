@@ -18,7 +18,7 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div id="home" class="container tab-pane active"><br>
-              @if (Auth::id() == 1)
+              @if (Auth::user()->role == 1)
                 <a href="{{route('students.create')}}" data-toggle="modal" data-target="#myModal">Add Student</a><br><br>
                 <div class="modal" id="myModal">
                   <div class="modal-dialog">
@@ -103,7 +103,10 @@
                   <th>Firstname</th>
                   <th>Lastname</th>
                   <th>Class</th>
-                  @if (Auth::id() ==1)
+                  @if (Auth::user()->role ==1)
+                  <th>Action</th>
+                  @endif
+                  @if (Auth::user()->role ==0)
                   <th>Action</th>
                   @endif
                 </tr>
@@ -117,12 +120,15 @@
                     <td> {{ $student->firstname }}</td>
                     <td> {{ $student->lastname }}</td>
                     <td> {{ $student->class }}</td>
-                    @if (Auth::id() == 1)
+                    @if (Auth::user()->role == 1)
                     <td>
                       <a href="#"><span class="material-icons">person_add_disabled</span></a><b> |</b> 
                       <a href="{{route('students.show',$student->id)}}"><span class="material-icons text-info">edit</span></a>
                       <a href="{{route('students.edit',$student->id)}}"><span class="material-icons text-success">remove_red_eyes</span></a>
                     </td>
+                    @endif
+                    @if (Auth::user()->role == 0)
+                     <td><a href="{{route('students.edit',$student->id)}}"><span class="material-icons text-success">remove_red_eyes</span></a></td>
                     @endif
                     @endif
                 </tr>
@@ -151,7 +157,7 @@
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Class</th>
-                    @if (Auth::id() == 1)
+                    @if (Auth::user()->role == 1)
                       <th>Action</th>
                     @endif
                 </tr>
@@ -162,7 +168,7 @@
                     <td> {{ $student->firstname }}</td>
                     <td> {{ $student->lastname }}</td>
                     <td> {{ $student->class }}</td>
-                    @if (Auth::id() == 1)   
+                    @if (Auth::user()->role == 1)   
                     <td>
                       <a href="#"><span class="material-icons text-danger">person_add</span></a>
                     </td>
