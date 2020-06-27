@@ -30,3 +30,6 @@ Route::get('/comments/{id}', 'CommentController@getComment')->name('getComment')
 Route::get('/editForm/{id}', 'CommentController@showEdit')->name('editForm');
 Route::patch('/edit/{id}', 'CommentController@edit')->name('edit');
 Route::get('/delete/{id}', 'CommentController@delete')->name('delete');
+
+Route::get('/outFollowup/{id}', 'StudentController@outFollowup')->name('outFollowup');
+Route::get('/backFollowup/{id}', 'StudentController@backFollowup')->name('backFollowup');

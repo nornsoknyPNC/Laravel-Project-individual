@@ -111,9 +111,8 @@
                   @endif
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="followupTable">
                 @foreach ($students as $student)
-
               <tr>
                   @if ($student->activeFollowup==1)
                     <td> <img src="/uploads/students/{{ $student->picture }}" width="100px;" height="100px;"></td>
@@ -122,7 +121,7 @@
                     <td> {{ $student->class }}</td>
                     @if (Auth::user()->role == 1)
                     <td>
-                      <a href="#"><span class="material-icons">person_add_disabled</span></a><b> |</b> 
+                      <a href="{{route('backFollowup',$student->id)}}"><span class="material-icons" title="Out from followup">person_add_disabled</span></a><b> |</b> 
                       <a href="{{route('students.show',$student->id)}}"><span class="material-icons text-info">edit</span></a>
                       <a href="{{route('students.edit',$student->id)}}"><span class="material-icons text-success">remove_red_eyes</span></a>
                     </td>
@@ -152,6 +151,7 @@
                 @enderror
             </div><br>
               <table class="table table-hover">
+                <thead>
                 <tr>
                     <th>Picture</th>
                     <th>Firstname</th>
@@ -161,6 +161,8 @@
                       <th>Action</th>
                     @endif
                 </tr>
+              </thead>
+              <tbody id="outTable">
                 @foreach ($students as $student)
                 <tr>
                   @if ($student->activeFollowup==0)
@@ -170,11 +172,12 @@
                     <td> {{ $student->class }}</td>
                     @if (Auth::user()->role == 1)   
                     <td>
-                      <a href="#"><span class="material-icons text-danger">person_add</span></a>
+                      <a href="{{route('outFollowup',$student->id)}}"><span class="material-icons text-danger" title="Add to followup">person_add</span></a>
                     </td>
                     @endif
                     @endif
                 </tr>
+              </tbody>
                 @endforeach
               </table>
             </div>
